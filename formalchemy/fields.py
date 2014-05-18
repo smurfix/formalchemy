@@ -1769,9 +1769,10 @@ class AttributeField(AbstractField):
             # itself. SA should probably have called .type something
             # different, or just not instantiated them...
             self.type = self._property.composite_class.__new__(self._property.composite_class)
-        elif len(_columns) > 1:
-            self.type = None # may have to be more accurate here
         else:
+            ## _columns may be longer than 1, in which case it's a
+            ## joined-inheritance table and it doesn't matter which key we
+            ## pick, as they're natural-joined anyway
             self.type = _columns[0].type
 
         self.key = self._impl.key
