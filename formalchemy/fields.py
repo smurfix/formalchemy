@@ -1757,7 +1757,7 @@ class AttributeField(AbstractField):
 
         _columns = self._columns
 
-        self.is_pk = bool([c for c in self._columns if c.primary_key])
+        self.is_pk = bool([c for c in _columns if c.primary_key])
 
         self.is_raw_foreign_key = bool(isinstance(self._property, ColumnProperty) and _foreign_keys(self._property.columns[0]))
 
